@@ -20,5 +20,5 @@ database.connect()
             .add(patternPin + ',cmd:report', (m, n) => {
                 n(null, m);
             })
-            .listen({type: 'tcp', port: 7003, pin: patternPin});
+            .listen({type: 'tcp', port: 7010, pin: patternPin});
     });
