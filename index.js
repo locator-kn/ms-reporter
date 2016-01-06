@@ -18,7 +18,8 @@ database.connect()
         seneca
             //.use(transportMethod + '-transport')
             .add(patternPin + ',cmd:report', (m, n) => {
-                n(null, m);
+                console.log('incomming report', m);
+                n(null, m.data);
             })
             .listen({type: 'tcp', port: 7010, pin: patternPin});
     });
