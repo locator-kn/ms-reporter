@@ -11,6 +11,7 @@ const modules = {
 };
 
 let getFunctionByRoleAndCmd;
+const noop = () => {};
 
 // select desired transport method
 const transportMethod = process.env['SENECA_TRANSPORT_METHOD'] || 'rabbitmq';
@@ -31,6 +32,5 @@ database.connect()
 
 getFunctionByRoleAndCmd = (role, cmd) => {
     console.log('incomming report for role ', role, 'with cmd', cmd);
-    return modules[role] && modules[role][cmd] ? modules[role][cmd] : () => {
-    };
+    return modules[role] && modules[role][cmd] ? modules[role][cmd] : noop;
 };
