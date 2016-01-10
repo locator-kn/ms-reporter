@@ -6,14 +6,13 @@ require('dotenv').config({path: pwd});
 
 const seneca = require('seneca')();
 const trainer = require('./lib/trainer');
+const util = require('./lib/util');
 const modules = {
     location: require('./lib/location')
 };
 
 let getFunctionByRoleAndCmd;
-const noop = () => {
-    console.log('info: no implementation found');
-};
+
 
 // select desired transport method
 const transportMethod = process.env['SENECA_TRANSPORT_METHOD'] || 'rabbitmq';
@@ -38,5 +37,5 @@ trainer.init()
 
 getFunctionByRoleAndCmd = (role, cmd) => {
     console.log('incomming report for role ', role, 'with cmd', cmd);
-    return modules[role] && modules[role][cmd] ? modules[role][cmd] : noop;
+    return modules[role] && modules[role][cmd] ? modules[role][cmd] : util.noop;
 };
