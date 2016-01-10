@@ -5,26 +5,28 @@ const pwd = path.join(__dirname, '..', '/.env');
 require('dotenv').config({path: pwd});
 
 const seneca = require('seneca')();
-const database = require('./lib/database');
+const trainer = require('./lib/trainer');
 const modules = {
     location: require('./lib/location')
 };
 
 let getFunctionByRoleAndCmd;
-const noop = () => {};
+const noop = () => {
+    console.log('info: no implementation found');
+};
 
 // select desired transport method
 const transportMethod = process.env['SENECA_TRANSPORT_METHOD'] || 'rabbitmq';
 const patternPin = 'role:reporter';
 
 // init database and then seneca and expose functions
-database.connect()
+trainer.init()
     .then(() => {
         seneca
         //.use(transportMethod + '-transport')
             .add(patternPin + ',cmd:report', (m, n) => {
                 n(null, {});
-                getFunctionByRoleAndCmd(m.origin_role, m.origin_cmd)();
+                getFunctionByRoleAndCmd(m.origin_role, m.origin_cmd)(m.data);
             })
             .listen({type: 'tcp', port: 7010, pin: patternPin});
     });
