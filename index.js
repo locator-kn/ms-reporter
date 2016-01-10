@@ -28,6 +28,10 @@ trainer.init()
                 n(null, {});
                 getFunctionByRoleAndCmd(m.origin_role, m.origin_cmd)(m.data);
             })
+            .add(patternPin + ',cmd:recommendationForPerson', trainer.recommendationForPerson)
+            .add(patternPin + ',cmd:recommendationForThing', trainer.recommendationForThing)
+            .add(patternPin + ',cmd:trainMultiple', trainer.trainMultiple)
+
             .listen({type: 'tcp', port: 7010, pin: patternPin});
     });
 
