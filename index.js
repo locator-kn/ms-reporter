@@ -23,9 +23,9 @@ trainer.init()
     .then(() => {
         seneca
         //.use(transportMethod + '-transport')
-            .add(patternPin + ',cmd:report', (m, n) => {
+            .add(patternPin + ',cmd:*', (m, n) => {
                 n(null, {});
-                getFunctionByRoleAndCmd(m.origin_role, m.origin_cmd)(m.data);
+                getFunctionByRoleAndCmd(m.origin_role, m.cmd)(m);
             })
             .add(patternPin + ',cmd:recommendationForPerson', trainer.recommendationForPerson)
             .add(patternPin + ',cmd:recommendationForThing', trainer.recommendationForThing)
