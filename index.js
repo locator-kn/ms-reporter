@@ -36,6 +36,6 @@ trainer.init()
 
 
 getFunctionByRoleAndCmd = (role, cmd) => {
-    console.log('incomming report for role ', role, 'with cmd', cmd);
+    console.log('incomming report for role', role, 'with cmd', cmd);
     return modules[role] && modules[role][cmd] ? modules[role][cmd] : util.noop;
 };
