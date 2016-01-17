@@ -25,6 +25,9 @@ trainer.init()
         //.use(transportMethod + '-transport')
             .add(patternPin + ',cmd:*', (m, n) => {
                 n(null, {});
+                if(m.requesting_user_id === 'unknown') {
+                    return console.log('doing nothing, requesting user is not logged in');
+                }
                 getFunctionByRoleAndCmd(m.origin_role, m.cmd)(m);
             })
             .add(patternPin + ',cmd:recommendationForPerson', trainer.recommendationForPerson)
