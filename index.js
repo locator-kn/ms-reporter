@@ -15,7 +15,7 @@ let getFunctionByRoleAndCmd;
 
 
 // select desired transport method
-const transportMethod = process.env['SENECA_TRANSPORT_METHOD'] || 'rabbitmq';
+//const transportMethod = process.env['SENECA_TRANSPORT_METHOD'] || 'rabbitmq';
 const patternPin = 'role:reporter';
 
 // init database and then seneca and expose functions
