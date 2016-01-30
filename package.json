@@ -13,6 +13,7 @@
     "dotenv": "^1.2.0",
     "ger": "0.0.98",
     "ger_rethinkdb_esm": "0.0.5",
+    "getstream": "^3.0.0",
     "hoek": "^3.0.4",
     "joi": "^7.1.0",
     "mongodb": "^2.1.3",
